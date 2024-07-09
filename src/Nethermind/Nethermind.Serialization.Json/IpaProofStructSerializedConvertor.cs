@@ -9,15 +9,15 @@ public class IpaProofStructSerializedConverter : System.Text.Json.Serialization.
     {
         reader.Read();
         reader.Read();
-        var lData = ByteArrayConverter.Convert(ref reader); // Use ByteArrayConverter for 'l'
+        var lData = ByteArrayConverter.Convert(ref reader);
         var l = lData != null ? JsonSerializer.Deserialize<byte[][]>(lData, options) : null;
         reader.Read();
         reader.Read();
-        var aData = ByteArrayConverter.Convert(ref reader); // Use ByteArrayConverter for 'a'
+        var aData = ByteArrayConverter.Convert(ref reader);
         var a = aData != null ? JsonSerializer.Deserialize<byte[]>(aData, options) : null;
         reader.Read();
-        reader.Read(); // Skip over the 'r' property name
-        var rData = ByteArrayConverter.Convert(ref reader); // Use ByteArrayConverter for 'r'
+        reader.Read();
+        var rData = ByteArrayConverter.Convert(ref reader);
         var r = rData != null ? JsonSerializer.Deserialize<byte[][]>(rData, options) : null;
 
         return new IpaProofStructSerialized(l, a, r);
